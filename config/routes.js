@@ -42,7 +42,7 @@ module.exports.routes = {
   'post /getinfo':"CoursesController.getinfo",
   'post /updatecourse':"CoursesController.updatecourse",
   'get /getcourse' : 'CoursesController.getcourse',
-  'post /viewone':"CoursesController.getone",
+  'post /getone':"CoursesController.getone",
 
   'get /getUser' : 'UserController.getUser',
 

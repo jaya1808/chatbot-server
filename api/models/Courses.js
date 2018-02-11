@@ -17,7 +17,8 @@ module.exports = {
     	required: true
 		},
 		cname : {
-				type : 'string'		
+			type : 'string',
+    		required: true		
 			},
 		department : {
 			type : 'string'

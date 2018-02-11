@@ -11,7 +11,7 @@ createcourse: function(req, res){
 
 		var newcourse = {
 			cid : req.param('cid'),
-			cname : req.param('name'),
+			cname :req.param('name'),
 			department : req.param('department'),
 			programme : 	req.param('programme'),
 			startdate : req.param('startdate'),

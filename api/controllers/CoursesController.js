@@ -61,6 +61,8 @@ updatecourse: function(req, res){
                 return res.json(500, { error: 'Error in Course update' });
             }
             sails.log.debug('Success', JSON.stringify(result));
+            sails.log.debug("check log");
+
             return res.json(200, { success: 'Course succesfully updated' });
         });
 		},

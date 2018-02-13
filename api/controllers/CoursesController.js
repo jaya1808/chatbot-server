@@ -70,8 +70,8 @@ updatecourse: function(req, res){
 
 getinfo: function(req, res){
 
-			var cname = req.param('coursename');
-			var intent = req.param('intent');
+			var cname = req.body.result.parameters.courses;
+			var intent = req.body.result.metadata.intentName;
 			var output;
 			Courses.find().where({cname: cname}).exec(function(err, result){
 				if (err) {
@@ -79,8 +79,17 @@ getinfo: function(req, res){
                 return res.json(500, { error: 'Error Occured' });
             	}
 				
+				sails.log.debug(cname);
 				sails.log.debug(result);
 				sails.log.debug(intent);
+
+				if(intent == 'info')
+				{
+				output = " For the whole admission process you can refer to the following link "+ result[i][link] ;
+				}
+
+				else
+				{
 				
 				for (var i=0; i < result.length; i++) {
 					if (result[i][intent]) {
@@ -111,17 +120,22 @@ getinfo: function(req, res){
             			 	    output = " For the whole application process you can refer to the following link "+ result[i][intent] ;
             			 	else if(intent == 'admission')
 								output = " For the whole admission process you can refer to the following link "+ result[i][intent] ;
-							else if(intent == 'info')
-								output = " For the whole admission process you can refer to the following link "+ result[i][link] ;
+							
 							else 
             			 		output = "The "+intent+" for "+cname+" is "+result[i][intent] ;
             			
             			sails.log.debug(output);
-            			sails.log.debug(result[i][intent]);
-            			var response = output;
+            			
+						var response = output;
+
+						res.set('Content-Type', 'application/json'); //Requires application/json MIME type
+  						res.send(JSON.stringify({ "speech": response, "displayText": response 
+  						//"speech" is the spoken version of the response, "displayText" is the visual version
+  						}));
             			return res.json(response);
             		}//end of if
             	}//endoffor
+            }//end of else
             	
 			});
 

@@ -70,6 +70,8 @@ updatecourse: function(req, res){
 
 getinfo: function(req, res){
 
+			sails.log.debug('req -->'+req.body);
+
 			var cname = req.body.result.parameters.courses;
 			var intent = req.body.result.metadata.intentName;
 			var output;

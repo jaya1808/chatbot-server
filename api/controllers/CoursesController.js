@@ -130,11 +130,11 @@ getinfo: function(req, res){
             			
 						var response = output;
 
-						res.set('Content-Type', 'application/json'); //Requires application/json MIME type
-  						res.send(JSON.stringify({ "speech": response, "displayText": response 
+						res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
+  						 return res.send(JSON.stringify({ "speech": response, "displayText": response 
   						//"speech" is the spoken version of the response, "displayText" is the visual version
   						}));
-            			return res.json(response);
+            					//return res.json(response);
             		}//end of if
             	}//endoffor
             }//end of else

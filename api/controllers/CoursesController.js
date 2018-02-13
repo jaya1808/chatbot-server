@@ -95,7 +95,7 @@ getinfo: function(req, res){
 
 	if(intent == 'info')
 	{
-		output = " For the whole admission process you can refer to the following link "+ result[0].link ;
+		output = " For more information on " +cname+ " visit " + result[0].link ;
 		sails.log.debug(output);
         var response = output;
 		res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type

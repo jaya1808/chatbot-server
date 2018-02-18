@@ -35,7 +35,7 @@ module.exports = {
 		enddate : {
 				type : 'string'
 			},
-		registrationfee : {
+		applicationfee : {
 				type : 'string'		
 			},
 		coursefee: {

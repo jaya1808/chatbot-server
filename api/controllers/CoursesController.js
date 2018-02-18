@@ -17,7 +17,7 @@ createcourse: function(req, res){
 		programme :  req.param('programme'),
 		startdate : req.param('startdate'),
 		enddate : req.param('enddate'),
-		registrationfee : req.param('registrationfee'),
+		applicationfee : req.param('applicationfee'),
 		coursefee : req.param('coursefee'),
 		duration : req.param('duration'),
 		syllabus : req.param('syllabus'),
@@ -51,7 +51,7 @@ updatecourse: function(req, res){
 		programme : req.param('programme'),
 		startdate : req.param('startdate'),
 		enddate : req.param('enddate'),
-		registrationfee : req.param('registrationfee'),
+		applicationfee : req.param('applicationfee'),
 		coursefee : req.param('coursefee'),
 		duration : req.param('duration'),
 		syllabus : req.param('syllabus'),
@@ -116,7 +116,7 @@ getinfo: function(req, res){
             	output = " Applications for " +cname +" are open from "+ result[i][intent] ;
             else if(intent == 'enddate')
             	output = " Applications for " +cname +" are open till "+ result[i][intent] ;
-            else if(intent == 'registrationfee')
+            else if(intent == 'applicationfee')
             	output = " Application fee for " +cname +" is Rs "+ result[i][intent] ;
             else if(intent == 'coursefee')
             	output = " You can find the fee structure for " +cname +" in the link provided - "+ result[i][intent] ;

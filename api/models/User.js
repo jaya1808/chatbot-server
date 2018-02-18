@@ -10,18 +10,16 @@ module.exports = {
   connection: 'mysql',
 
   attributes: {
-  	name : {
-  	    type : 'string'		
-  	  },
-  	  password : {
-  	    type : 'string'
-  	  },
-  	  gender : {
-  	  	type : 'string'
-  	  }
 
-
-
+  name : {
+  	    type : 'string',	
+        required: true
+  	       },
+  email : {
+        type: 'email',
+        required: true,
+        unique: true
+            }
   }
   
 };

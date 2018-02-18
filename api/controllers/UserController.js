@@ -8,7 +8,7 @@
 module.exports = {
 	getUser: function(req, res){
 
-		User.find().then(function (response){
+		User.find({}).then(function (response){
 		 
 		  sails.log.debug('--->>>');
 		  sails.log.debug(response);
@@ -18,32 +18,30 @@ module.exports = {
 			sails.log.debug(error);
 		});
 	},
+	
 	createUser: function(req, res){
 
 		User.create({
-			name : req.param('name'),
-			password : req.param('password'),
-			gender : req.param('gender'),
+			name : req.body('name'),
+			email : req.body('email'),
 			}).exec(function(err, result){
             if (err) {
                 sails.log.debug('Some error occured ' + err);
-                return res.json(500, { error: 'Some error occured' });
+                return res.json({ 
+                	status: 400,
+                	success:false,
+                	error: err,
+                	data:null });
             }
             sails.log.debug('Success', JSON.stringify(result));
-            return res.json(200, { success: 'Success' });
+            return res.json({ 
+            	status: 200,
+                success:true,
+                error:null,
+                data: null
+            });
         });
-		// sails.log.debug("req data---->>>>");
-		// sails.log.debug(req.body);
-		// var response= {
-		// 	data: req.body,
-		// 	status:{
-		// 		code: 200, 
-		// 		msg:"successful"
-		// 	}
-		// };
-	
-
-	//return res.json(response);
+		
 	
 	}
 

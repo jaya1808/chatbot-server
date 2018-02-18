@@ -11,20 +11,20 @@ createcourse: function(req, res){
 
 	var newcourse = 
 	{
-		cid : req.param('cid'),
-		cname :req.param('cname'),
-		department : req.param('department'),
-		programme :  req.param('programme'),
-		startdate : req.param('startdate'),
-		enddate : req.param('enddate'),
-		applicationfee : req.param('applicationfee'),
-		coursefee : req.param('coursefee'),
-		duration : req.param('duration'),
-		syllabus : req.param('syllabus'),
-		application : req.param('application'),
-		admission : req.param('admission'),
-		link : req.param('link'),
-		eligibility: req.param('eligibility')
+		cid : req.body('cid'),
+		cname :req.body('cname'),
+		department : req.body('department'),
+		programme :  req.body('programme'),
+		startdate : req.body('startdate'),
+		enddate : req.body('enddate'),
+		applicationfee : req.body('applicationfee'),
+		coursefee : req.body('coursefee'),
+		duration : req.body('duration'),
+		syllabus : req.body('syllabus'),
+		application : req.body('application'),
+		admission : req.body('admission'),
+		link : req.body('link'),
+		eligibility: req.body('eligibility')
 	};
 
 	Courses.create(newcourse).exec(function(err, result){
@@ -44,21 +44,21 @@ createcourse: function(req, res){
 
 updatecourse: function(req, res){
 
-	Courses.update({cid: req.param("cid")},
+	Courses.update({cid: req.body("cid")},
 	{
-		cname : req.param('cname'),
-		department : req.param('department'),
-		programme : req.param('programme'),
-		startdate : req.param('startdate'),
-		enddate : req.param('enddate'),
-		applicationfee : req.param('applicationfee'),
-		coursefee : req.param('coursefee'),
-		duration : req.param('duration'),
-		syllabus : req.param('syllabus'),
-		eligibility: req.param('eligibility'),
-		application : req.param('application'),
-		admission: req.param('admission'),
-		link: req.param('link')
+		cname : req.body('cname'),
+		department : req.body('department'),
+		programme : req.body('programme'),
+		startdate : req.body('startdate'),
+		enddate : req.body('enddate'),
+		applicationfee : req.body('applicationfee'),
+		coursefee : req.body('coursefee'),
+		duration : req.body('duration'),
+		syllabus : req.body('syllabus'),
+		eligibility: req.body('eligibility'),
+		application : req.body('application'),
+		admission: req.body('admission'),
+		link: req.body('link')
 	}).exec(function(err, result){
             
     if (err)
@@ -162,7 +162,7 @@ getcourse: function(req, res){
 
 getone: function(req, res){
 
-	var id = req.param('id');
+	var id = req.body('id');
 	Courses.find({cid:id}).exec(function (err,result){
 	if(err)
 	{

@@ -11,66 +11,81 @@ createcourse: function(req, res){
 
 	var newcourse = 
 	{
-		cid : req.body('cid'),
-		cname :req.body('cname'),
-		department : req.body('department'),
-		programme :  req.body('programme'),
-		startdate : req.body('startdate'),
-		enddate : req.body('enddate'),
-		applicationfee : req.body('applicationfee'),
-		coursefee : req.body('coursefee'),
-		duration : req.body('duration'),
-		syllabus : req.body('syllabus'),
-		application : req.body('application'),
-		admission : req.body('admission'),
-		link : req.body('link'),
-		eligibility: req.body('eligibility')
+		cid : req.body.cid,
+		cname :req.body.cname,
+		department : req.body.department,
+		programme :  req.body.programme,
+		startdate : req.body.startdate,
+		enddate : req.body.enddate,
+		applicationfee : req.body.applicationfee,
+		coursefee : req.body.coursefee,
+		duration : req.body.duration,
+		syllabus : req.body.syllabus,
+		application : req.body.application,
+		admission : req.body.admission,
+		link : req.body.link,
+		eligibility: req.body.eligibility
 	};
 
 	Courses.create(newcourse).exec(function(err, result){
     
-    if (err) 
-    {
-		sails.log.debug('An error occured ' + err);
-        return res.json(500, { error: 'Error in creating new course' });
-    }
-           
-    sails.log.debug('Success', JSON.stringify(result));
-    return res.json(200, { success: 'New course successfully created' });
-    
-    });
+    if (err) {
+                sails.log.debug('Some error occured ' + err);
+                return res.json(200,{ 
+                	status: 400,
+                	success:false,
+                	error: err,
+                	data: null });
+            }
+            sails.log.debug('Success', JSON.stringify(result));
+            return res.json(200,{ 
+            	status: 200,
+                success:true,
+                error:null,
+                data: {"cid":result.cid,"cname":result.cname}
+            });
+        });
+
 	},
 
 
 updatecourse: function(req, res){
 
-	Courses.update({cid: req.body("cid")},
+	Courses.update({cid: req.body.cid},
 	{
-		cname : req.body('cname'),
-		department : req.body('department'),
-		programme : req.body('programme'),
-		startdate : req.body('startdate'),
-		enddate : req.body('enddate'),
-		applicationfee : req.body('applicationfee'),
-		coursefee : req.body('coursefee'),
-		duration : req.body('duration'),
-		syllabus : req.body('syllabus'),
-		eligibility: req.body('eligibility'),
-		application : req.body('application'),
-		admission: req.body('admission'),
-		link: req.body('link')
+		cname : req.body.cname,
+		department : req.body.department,
+		programme : req.body.programme,
+		startdate : req.body.startdate,
+		enddate : req.body.enddate,
+		applicationfee : req.body.applicationfee,
+		coursefee : req.body.coursefee,
+		duration : req.body.duration,
+		syllabus : req.body.syllabus,
+		eligibility: req.body.eligibility,
+		application : req.body.application,
+		admission: req.body.admission,
+		link: req.body.link
 	}).exec(function(err, result){
             
-    if (err)
-    {
-        sails.log.debug('Some error occured ' + err);
-        return res.json(500, { error: 'Error in Course update' });
-    }
-    
-    sails.log.debug('Success', JSON.stringify(result));
-    return res.json(200, { success: 'Course succesfully updated' });
-    
-    });
+    if (err) {
+                sails.log.debug('Some error occured ' + err);
+                return res.json(200,{ 
+                	status: 400,
+                	success:false,
+                	error: err,
+                	data: null });
+            }
+            sails.log.debug('Success', JSON.stringify(result));
+            return res.json(200,{ 
+            	status: 200,
+                success:true,
+                error:null,
+                data: {"cid":result.cid,"cname":result.cname}
+            });
+        });
+
+
 	},
 
 
@@ -150,29 +165,48 @@ getinfo: function(req, res){
 getcourse: function(req, res){
 	
 	Courses.find({}).exec(function (err,result){
-	if(err)
-	{
-		sails.log.debug('DB error occured : Courses not found ' + err);
-        return res.json(500, { error: 'Error Occured:Courses not found' });
-    }
+	
+	if (err) {
+                sails.log.debug('Some error occured ' + err);
+                return res.json(200,{ 
+                	status: 400,
+                	success:false,
+                	error: err,
+                	data: null });
+            }
+            sails.log.debug('Success', JSON.stringify(result));
+            return res.json(200,{ 
+            	status: 200,
+                success:true,
+                error:null,
+                data: result
+            });
+        });
 
-	return res.json(result);
-	});
 	},
 
 getone: function(req, res){
 
-	var id = req.body('id');
-	Courses.find({cid:id}).exec(function (err,result){
-	if(err)
-	{
-		sails.log.debug('DB error occured : Course not found ' + err);
-        return res.json(500, { error: 'Error Occured:Course not found' });
-    }
+	
+	Courses.find({cid: req.body.cid}).exec(function (err,result){
+	
+	if (err) {
+                sails.log.debug('Some error occured ' + err);
+                return res.json(200,{ 
+                	status: 400,
+                	success:false,
+                	error: err,
+                	data: null });
+            }
+            sails.log.debug('Success', JSON.stringify(result));
+            return res.json(200,{ 
+            	status: 200,
+                success:true,
+                error:null,
+                data: result
+            });
+        });
 
-	return res.json(result);
-
-	});
 	}
 
 

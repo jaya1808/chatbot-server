@@ -38,13 +38,12 @@ module.exports.routes = {
 
   //'get /getData': 'UserController.getData',
   'post /createUser':"UserController.createUser",
+  'get /getUser' : 'UserController.getUser',
   'post /createcourse':"CoursesController.createCourse",
   'post /getinfo':"CoursesController.getinfo",
   'post /updatecourse':"CoursesController.updatecourse",
   'get /getcourse' : 'CoursesController.getcourse',
-  'post /getone':"CoursesController.getone",
-
-  'get /getUser' : 'UserController.getUser',
+  'post /getone':"CoursesController.getone"
 
   /***************************************************************************
   *                                                                          *

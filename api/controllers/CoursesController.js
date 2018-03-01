@@ -136,7 +136,7 @@ getinfo: function(req, res){
             else if(intent == 'coursefee' || intent == 'coursefee-context')
             	output = " You can find the fee structure for " +cname +" in the link provided - "+ result[i].coursefee ;
             else if(intent == 'duration' || intent == 'duration-context')
-            	output =  "The "+intent+" for "+cname+" is "+result[i].duration ;
+            	output =  "The duration"+" for "+cname+" is "+result[i].duration ;
             else if(intent == 'syllabus' || intent == 'syllabus-context')
             	output = " You can find the syllabus structure for " +cname +" in the link provided - "+ result[i].syllabus ;
             else if(intent == 'eligibility' || intent == 'eligibility-context')

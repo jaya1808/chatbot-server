@@ -117,34 +117,34 @@ getinfo: function(req, res){
   		return res.send(JSON.stringify({ "speech": response, "displayText": response }));
 	}
 
-	else
-	{
+	// else
+	// {
 				
 	for (var i=0; i < result.length; i++) {
-		if (result[i][intent]) 
-		{
-			if(intent == 'department')
-            	output = cname +" comes under "+ result[i][intent] + " department. " ;
-            else if(intent == 'programme')
-            	output = cname +" is a "+ result[i][intent] + " programme. " ;
-            else if(intent == 'startdate')
-            	output = " Applications for " +cname +" are open from "+ result[i][intent] ;
-            else if(intent == 'enddate')
-            	output = " Applications for " +cname +" are open till "+ result[i][intent] ;
-            else if(intent == 'applicationfee')
-            	output = " Application fee for " +cname +" is Rs "+ result[i][intent] ;
-            else if(intent == 'coursefee')
-            	output = " You can find the fee structure for " +cname +" in the link provided - "+ result[i][intent] ;
-            else if(intent == 'duration')
-            	output =  "The "+intent+" for "+cname+" is "+result[i][intent] ;
-            else if(intent == 'syllabus')
-            	output = " You can find the syllabus structure for " +cname +" in the link provided - "+ result[i][intent] ;
-            else if(intent == 'eligibility')
-            	output = " You can find the eligibility criteria for " +cname +" in the link provided "+ result[i][intent] ;
-            else if(intent == 'application')
-            	output = " You can refer to the given link for the whole application process " + result[i][intent] ;
-            else if(intent == 'admission')
-            	output = " Kindly refer to the following link " + result[i][intent] + " for complete admission process ";
+	// 	if (result[i][intent]) 
+	// 	{
+			if(intent == 'department' || intent == 'department-context')
+            	output = cname +" comes under "+ result[i].department + " department. " ;
+            else if(intent == 'programme' || intent == 'programme-context')
+            	output = cname +" is a "+ result[i].programme + " programme. " ;
+            else if(intent == 'startdate' || intent == 'startdate-context' )
+            	output = " Applications for " +cname +" are open from "+ result[i].startdate ;
+            else if(intent == 'enddate' || intent == 'enddate-context')
+            	output = " Applications for " +cname +" are open till "+ result[i].enddate ;
+            else if(intent == 'applicationfee' || intent == 'applicationfee-context')
+            	output = " Application fee for " +cname +" is Rs "+ result[i].applicationfee ;
+            else if(intent == 'coursefee' || intent == 'coursefee-context')
+            	output = " You can find the fee structure for " +cname +" in the link provided - "+ result[i].coursefee ;
+            else if(intent == 'duration' || intent == 'duration-context')
+            	output =  "The "+intent+" for "+cname+" is "+result[i].duration ;
+            else if(intent == 'syllabus' || intent == 'syllabus-context')
+            	output = " You can find the syllabus structure for " +cname +" in the link provided - "+ result[i].syllabus ;
+            else if(intent == 'eligibility' || intent == 'eligibility-context')
+            	output = " You can find the eligibility criteria for " +cname +" in the link provided "+ result[i].eligibility ;
+            else if(intent == 'application' || intent == 'application-context')
+            	output = " You can refer to the given link for the whole application process " + result[i].application ;
+            else if(intent == 'admission' || intent == 'admission-context')
+            	output = " Kindly refer to the following link " + result[i].admission + " for complete admission process ";
    
 			else 
             	output = "The "+intent+" for "+cname+" is "+result[i][intent] ;
@@ -154,9 +154,9 @@ getinfo: function(req, res){
 			res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   			return res.send(JSON.stringify({ "speech": response, "displayText": response }));
             					//return res.json(response);
-        }//end of if
-        }//endoffor
-    }//end of else
+    //     }//end of if
+       }//endoffor
+    // }//end of else
             	
 	});
 	},

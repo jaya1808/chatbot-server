@@ -11,7 +11,7 @@ module.exports = {
 
   		connection: 'mysql',
 
-  attributes: {
+  
   	  id : {
   	    type : 'int'		
   	  },
@@ -19,12 +19,12 @@ module.exports = {
   	    type : 'string'
   	  },
   	  password : {
-  	  	type : 'varchar'
+  	  	type : 'string'
   	  }
 
 
 
-  }
+  
 
   }
 };

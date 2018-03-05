@@ -39,11 +39,15 @@ module.exports.routes = {
   //'get /getData': 'UserController.getData',
   'post /createUser':"UserController.createUser",
   'get /getUser' : 'UserController.getUser',
-  'post /createcourse':"CoursesController.createCourse",
   'post /getinfo':"CoursesController.getinfo",
+
+  'post /createcourse':"CoursesController.createCourse",
   'post /updatecourse':"CoursesController.updatecourse",
   'get /getcourse' : 'CoursesController.getcourse',
-  'post /getone':"CoursesController.getone"
+  'post /getone':"CoursesController.getone",
+
+  'post /createAdmin':"AdminController.createAdmin",
+  'get /getAdmin' : 'AdminController.getAdmin',
 
   /***************************************************************************
   *                                                                          *

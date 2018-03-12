@@ -7,12 +7,10 @@
 
 module.exports = {
 
+  connection: 'mysql',
+
   attributes: {
-
-  		connection: 'mysql',
-
-  
-  	  id : {
+      id : {
   	    type : 'integer',
         primaryKey: true,
         required: true		

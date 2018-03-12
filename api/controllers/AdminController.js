@@ -31,6 +31,7 @@ module.exports = {
 	createAdmin: function(req, res){
 
 		Admin.create({
+            id: req.body.id,
 			name : req.body.name,
 			password : req.body.password,
 			}).exec(function(err, result){
@@ -50,9 +51,9 @@ module.exports = {
                 data: result.name
             });
         });
-		
-	
-	}
+    }
+
+       
 
 	
 };

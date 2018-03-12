@@ -23,9 +23,6 @@ module.exports = {
 		department : {
 			type : 'string'
 		},
-		// degree : {
-		// 	type : 'string'
-		// },
 		programme : {
 			type : 'string'
 		},

@@ -162,7 +162,7 @@ getinfo: function(req, res){
 	},
 
 
-getcourse: function(req, res){
+getallcourses: function(req, res){
 	
 	Courses.find({}).exec(function (err,result){
 	
@@ -185,11 +185,11 @@ getcourse: function(req, res){
 
 	},
 
-getone: function(req, res){
+getcourse: function(req, res){
 
 	
 	Courses.find({cid: req.body.cid}).exec(function (err,result){
-	
+	sails.log.debug(req.body.cid);
 	if (err) {
                 sails.log.debug('Some error occured ' + err);
                 return res.json(200,{ 

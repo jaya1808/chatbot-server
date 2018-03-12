@@ -13,7 +13,9 @@ module.exports = {
 
   
   	  id : {
-  	    type : 'int'		
+  	    type : 'integer',
+        primaryKey: true,
+        required: true		
   	  },
   	  name : {
   	    type : 'string'

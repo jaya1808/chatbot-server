@@ -43,8 +43,8 @@ module.exports.routes = {
 
   'post /createcourse':"CoursesController.createCourse",
   'post /updatecourse':"CoursesController.updatecourse",
-  'get /getcourse' : 'CoursesController.getcourse',
-  'post /getone':"CoursesController.getone",
+  'get /getallcourses' : 'CoursesController.getallcourses',
+  'post /getcourse':"CoursesController.getcourse",
 
   'post /createAdmin':"AdminController.createAdmin",
   'get /getAdmin' : 'AdminController.getAdmin',

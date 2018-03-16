@@ -163,6 +163,8 @@ getinfo: function(req, res){
 
 
 getallcourses: function(req, res){
+
+    sails.log.debug(req.session);
 	
 	Courses.find({}).exec(function (err,result){
 	
@@ -174,7 +176,7 @@ getallcourses: function(req, res){
                 	error: err,
                 	data: null });
             }
-            sails.log.debug('Success', JSON.stringify(result));
+            // sails.log.debug('Success', JSON.stringify(result));
             return res.json(200,{ 
             	status: 200,
                 success:true,
@@ -187,7 +189,7 @@ getallcourses: function(req, res){
 
 getcourse: function(req, res){
 
-	
+	sails.log.debug(req);
 	Courses.find({cid: req.body.cid}).exec(function (err,result){
 	sails.log.debug(req.body.cid);
 	if (err) {

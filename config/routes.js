@@ -48,6 +48,9 @@ module.exports.routes = {
 
   'post /createAdmin':"AdminController.createAdmin",
   'get /getAdmin' : 'AdminController.getAdmin',
+  'post /adminLogin':"AdminController.adminLogin",
+  'post /sendFeedback':"FeedbackController.sendFeedback",
+  'get /getFeedback' : 'FeedbackController.getFeedback',
 
   /***************************************************************************
   *                                                                          *

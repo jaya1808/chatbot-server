@@ -9,81 +9,115 @@ module.exports = {
 	
 createcourse: function(req, res){
 
-	var newcourse = 
-	{
-		cid : req.body.cid,
-		cname :req.body.cname,
-		department : req.body.department,
-		programme :  req.body.programme,
-		startdate : req.body.startdate,
-		enddate : req.body.enddate,
-		applicationfee : req.body.applicationfee,
-		coursefee : req.body.coursefee,
-		duration : req.body.duration,
-		syllabus : req.body.syllabus,
-		application : req.body.application,
-		admission : req.body.admission,
-		link : req.body.link,
-		eligibility: req.body.eligibility
-	};
+    if(req.session && req.session.userId){
 
-	Courses.create(newcourse).exec(function(err, result){
-    
-    if (err) {
-                sails.log.debug('Some error occured ' + err);
+        sails.log.debug("Authenticated");
+
+    	var newcourse = 
+    	{
+    		cid : req.body.cid,
+    		cname :req.body.cname,
+    		department : req.body.department,
+    		programme :  req.body.programme,
+    		startdate : req.body.startdate,
+    		enddate : req.body.enddate,
+    		applicationfee : req.body.applicationfee,
+    		coursefee : req.body.coursefee,
+    		duration : req.body.duration,
+    		syllabus : req.body.syllabus,
+    		application : req.body.application,
+    		admission : req.body.admission,
+    		link : req.body.link,
+    		eligibility: req.body.eligibility
+    	};
+
+    	Courses.create(newcourse).exec(function(err, result){
+        
+        if (err) {
+                    sails.log.debug('Some error occured ' + err);
+                    return res.json(200,{ 
+                    	status: 400,
+                    	success:false,
+                    	error: err,
+                    	data: null });
+                }
+                sails.log.debug('Success', JSON.stringify(result));
                 return res.json(200,{ 
-                	status: 400,
-                	success:false,
-                	error: err,
-                	data: null });
-            }
-            sails.log.debug('Success', JSON.stringify(result));
-            return res.json(200,{ 
-            	status: 200,
-                success:true,
-                error:null,
-                data: {"cid":result.cid,"cname":result.cname}
+                	status: 200,
+                    success:true,
+                    error:null,
+                    data: {"cid":result.cid,"cname":result.cname}
+                });
             });
-        });
+    }
+    else{
+
+        sails.log.debug("Unauthenticated");
+            return res.json(200,{ 
+                    status: 401,
+                    success:false,
+                    error:'Session Expired',
+                    data: null
+                });
+
+        }
+
 
 	},
 
 
 updatecourse: function(req, res){
 
+    if(req.session && req.session.userId){
+
 	Courses.update({cid: req.body.cid},
-	{
-		cname : req.body.cname,
-		department : req.body.department,
-		programme : req.body.programme,
-		startdate : req.body.startdate,
-		enddate : req.body.enddate,
-		applicationfee : req.body.applicationfee,
-		coursefee : req.body.coursefee,
-		duration : req.body.duration,
-		syllabus : req.body.syllabus,
-		eligibility: req.body.eligibility,
-		application : req.body.application,
-		admission: req.body.admission,
-		link: req.body.link
-	}).exec(function(err, result){
-            
-    if (err) {
-                sails.log.debug('Some error occured ' + err);
+    	{
+    		cname : req.body.cname,
+    		department : req.body.department,
+    		programme : req.body.programme,
+    		startdate : req.body.startdate,
+    		enddate : req.body.enddate,
+    		applicationfee : req.body.applicationfee,
+    		coursefee : req.body.coursefee,
+    		duration : req.body.duration,
+    		syllabus : req.body.syllabus,
+    		eligibility: req.body.eligibility,
+    		application : req.body.application,
+    		admission: req.body.admission,
+    		link: req.body.link
+    	}).exec(function(err, result){
+                
+        if (err) {
+                    sails.log.debug('Some error occured ' + err);
+                    return res.json(200,{ 
+                    	status: 400,
+                    	success:false,
+                    	error: err,
+                    	data: null });
+                }
+                sails.log.debug('Success', JSON.stringify(result));
                 return res.json(200,{ 
-                	status: 400,
-                	success:false,
-                	error: err,
-                	data: null });
-            }
-            sails.log.debug('Success', JSON.stringify(result));
-            return res.json(200,{ 
-            	status: 200,
-                success:true,
-                error:null,
-                data: {"cid":result.cid,"cname":result.cname}
+                	status: 200,
+                    success:true,
+                    error:null,
+                    data: {"cid":result.cid,"cname":result.cname}
+                });
             });
-        });
+    }
+
+    else{
+
+        sails.log.debug("Unauthenticated");
+            return res.json(200,{ 
+                    status: 401,
+                    success:false,
+                    error:'Session Expired',
+                    data: null
+                });
+
+        }
+
+
 
 
 	},
@@ -164,50 +198,81 @@ getinfo: function(req, res){
 
 getallcourses: function(req, res){
 
-    sails.log.debug(req.session);
-	
-	Courses.find({}).exec(function (err,result){
-	
-	if (err) {
-                sails.log.debug('Some error occured ' + err);
+    if(req.session && req.session.userId){
+
+        sails.log.debug("Authenticated");
+    	
+    	Courses.find({}).exec(function (err,result){
+    	
+    	if (err) {
+                    sails.log.debug('Some error occured ' + err);
+                    return res.json(200,{ 
+                    	status: 400,
+                    	success:false,
+                    	error: err,
+                    	data: null });
+                }
+                // sails.log.debug('Success', JSON.stringify(result));
                 return res.json(200,{ 
-                	status: 400,
-                	success:false,
-                	error: err,
-                	data: null });
-            }
-            // sails.log.debug('Success', JSON.stringify(result));
-            return res.json(200,{ 
-            	status: 200,
-                success:true,
-                error:null,
-                data: result
+                	status: 200,
+                    success:true,
+                    error:null,
+                    data: result
+                });
             });
-        });
+
+    }
+
+    else{
+        
+        sails.log.debug("Unauthenticated");
+            return res.json(200,{ 
+                    status: 401,
+                    success:false,
+                    error:'Session Expired',
+                    data: null
+                });
+        
+        }
 
 	},
 
 getcourse: function(req, res){
 
-	sails.log.debug(req);
-	Courses.find({cid: req.body.cid}).exec(function (err,result){
-	sails.log.debug(req.body.cid);
-	if (err) {
-                sails.log.debug('Some error occured ' + err);
+    if(req.session && req.session.userId){
+
+	   sails.log.debug("Authenticated");
+    	Courses.find({cid: req.body.cid}).exec(function (err,result){
+    	sails.log.debug(req.body.cid);
+    	if (err) {
+                    sails.log.debug('Some error occured ' + err);
+                    return res.json(200,{ 
+                    	status: 400,
+                    	success:false,
+                    	error: err,
+                    	data: null });
+                }
+                // sails.log.debug('Success', JSON.stringify(result));
                 return res.json(200,{ 
-                	status: 400,
-                	success:false,
-                	error: err,
-                	data: null });
-            }
-            sails.log.debug('Success', JSON.stringify(result));
-            return res.json(200,{ 
-            	status: 200,
-                success:true,
-                error:null,
-                data: result
+                	status: 200,
+                    success:true,
+                    error:null,
+                    data: result
+                });
             });
-        });
+
+    }
+    else{
+
+        sails.log.debug("Unauthenticated");
+            return res.json(200,{ 
+                    status: 401,
+                    success:false,
+                    error:'Session Expired',
+                    data: null
+                });
+
+        }
 
 	}
 

@@ -14,7 +14,7 @@ module.exports = {
 		cid : {
 			type : 'string',
 			primaryKey: true,
-    	required: true
+    		required: true
 		},
 		cname : {
 			type : 'string',

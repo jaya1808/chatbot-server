@@ -34,23 +34,43 @@ module.exports = {
 
     getFeedback: function(req, res){
 
-		Feedback.find({}).exec(function(err, result){
-            if (err) {
-                sails.log.debug('Some error occured ' + err);
+        if(req.session && req.session.userId){
+
+             sails.log.debug("Authenticated");
+
+    		Feedback.find({}).exec(function(err, result){
+                if (err) {
+                    sails.log.debug('Some error occured ' + err);
+                    return res.json(200,{ 
+                    	status: 400,
+                    	success:false,
+                    	error: err,
+                    	data: null });
+                }
+                sails.log.debug('Success', JSON.stringify(result));
                 return res.json(200,{ 
-                	status: 400,
-                	success:false,
-                	error: err,
-                	data: null });
-            }
-            sails.log.debug('Success', JSON.stringify(result));
-            return res.json(200,{ 
-            	status: 200,
-                success:true,
-                error:null,
-                data: result
+                	status: 200,
+                    success:true,
+                    error:null,
+                    data: result
+                });
             });
-        });
+
+        }
+
+        else{
+
+        sails.log.debug("Unauthenticated");
+            return res.json(200,{ 
+                    status: 401,
+                    success:false,
+                    error:'Session Expired',
+                    data: null
+                });
+
+        }
+
+
 	},
 
 

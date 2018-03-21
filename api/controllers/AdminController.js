@@ -77,15 +77,15 @@ module.exports = {
                     data: null });
             }
             else{
-            sails.log.debug('Success', JSON.stringify(result));
-            req.session.userId = result[0].id;   // returned from a database
-            return res.json(200,{ 
-                status: 200,
-                success:true,
-                error:null,
-                data: result[0].name
-            });
-                }
+                // sails.log.debug('Success', JSON.stringify(result));
+                req.session.userId = result[0].id;   // returned from a database
+                return res.json(200,{ 
+                    status: 200,
+                    success:true,
+                    error:null,
+                    data: result[0].name
+                });
+            }
         }
         });
 

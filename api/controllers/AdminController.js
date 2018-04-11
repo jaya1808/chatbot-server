@@ -54,6 +54,8 @@ module.exports = {
     },
 
     adminLogin: function(req, res){
+
+        password = req.body.password;
         
        Admin.find({id: req.body.id}).exec(function (err,result){
         
@@ -77,6 +79,9 @@ module.exports = {
                     data: null });
             }
             else{
+
+                if(result[0].password == password){
+                sails.log.debug("coming");
                 // sails.log.debug('Success', JSON.stringify(result));
                 req.session.userId = result[0].id;   // returned from a database
                 return res.json(200,{ 
@@ -85,6 +90,14 @@ module.exports = {
                     error:null,
                     data: result[0].name
                 });
+                }
+                else{
+                    return res.json(200,{ 
+                    status: 401,
+                    success:false,
+                    error: 'password Incorrect',
+                    data: null });
+                }
             }
         }
         });
